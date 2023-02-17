@@ -27,6 +27,8 @@ public class Student {
     @OneToOne(mappedBy = "studentVariableName", cascade = CascadeType.ALL)
     private Card card;
 
+    //Card entity is not set
+
 
 
 

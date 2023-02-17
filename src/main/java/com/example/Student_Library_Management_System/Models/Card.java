@@ -12,17 +12,23 @@ import java.util.Date;
 @Table(name="card")
 public class Card {
 
+    //Plan to save this card in DB
+    //Before saving I have to set its attributes : Rule No 1
+
+
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // It is auto-generated
     private int id;
 
     @CreationTimestamp // Auto timestamp the time when an entry is created
-    Date createdOn;
+    Date createdOn;  // it is auto generated
     @UpdateTimestamp // Sets time when an entry is updated
-    Date updatedOn;
+    Date updatedOn; // is is auto generated
 
     @Enumerated(value=EnumType.STRING)
-    private CardStatus cardStatus;
+    private CardStatus cardStatus; // Set its attribute
 
 
     //Unidirectional Mapping
