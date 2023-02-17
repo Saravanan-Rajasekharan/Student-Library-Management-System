@@ -21,9 +21,22 @@ public class Student {
 
     private String country;
 
+
+
     //Syntax for Bidirectional Mapping
     @OneToOne(mappedBy = "studentVariableName", cascade = CascadeType.ALL)
     private Card card;
+
+
+
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
     public Student() {
 

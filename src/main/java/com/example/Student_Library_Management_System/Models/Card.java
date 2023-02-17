@@ -24,8 +24,8 @@ public class Card {
     @Enumerated(value=EnumType.STRING)
     private CardStatus cardStatus;
 
-    //Unidirectional Mapping
 
+    //Unidirectional Mapping
     @OneToOne
     @JoinColumn
     private Student studentVariableName;
@@ -33,6 +33,13 @@ public class Card {
 
 
 
+    public Student getStudentVariableName() {
+        return studentVariableName;
+    }
+
+    public void setStudentVariableName(Student studentVariableName) {
+        this.studentVariableName = studentVariableName;
+    }
 
     public Card() {
     }
