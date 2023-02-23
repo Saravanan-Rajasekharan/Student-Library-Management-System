@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Service;
 
+import com.example.Student_Library_Management_System.DTOs.StudentUpdateMobRequestDto;
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import com.example.Student_Library_Management_System.Models.Card;
 import com.example.Student_Library_Management_System.Models.Student;
@@ -7,9 +8,12 @@ import com.example.Student_Library_Management_System.Repository.StudentRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
+    public Object getNameByEmail;
     @Autowired
     StudentRepository studentRepository;
 
@@ -34,4 +38,31 @@ public class StudentService {
 
         return "Student and Card added!";
     }
+
+
+    public String findNameByEmail(String email) {
+        Student student = studentRepository.findByEmail(email);
+        return student.getName();
+    }
+
+   public String updateMobileNo(StudentUpdateMobRequestDto studentReq){
+
+        //Convert the Dto to the Entity : saved better
+
+        // First we try to fetch the originalData
+
+       Student originalStudent = studentRepository.findById(studentReq.getId()).get();
+
+       //We will keep the other properties as it is and only change the required parameters
+
+       originalStudent.setMobNo(studentReq.getMobNo());
+
+       // Always the entity object being saved
+
+        studentRepository.save(originalStudent);
+        return "Student mobile number updated";
+   }
+
+
+
 }

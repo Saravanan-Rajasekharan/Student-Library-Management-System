@@ -3,6 +3,9 @@ package com.example.Student_Library_Management_System.Models;
 import com.example.Student_Library_Management_System.Enums.Genre;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="book")
 public class Book {
@@ -35,6 +38,15 @@ public class Book {
     private Card card;
 
     private boolean issued;
+
+
+    //Bi-direction mapping for transaction layer
+
+    @OneToMany(mappedBy = "book",cascade =CascadeType.ALL)
+    private List<Transactions> listOfTransactions = new ArrayList<>();
+
+
+
 
     public Card getCard() {
         return card;
@@ -101,5 +113,13 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public List<Transactions> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(List<Transactions> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
     }
 }

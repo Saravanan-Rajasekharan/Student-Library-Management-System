@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Service;
 
+import com.example.Student_Library_Management_System.DTOs.BookRequestDto;
 import com.example.Student_Library_Management_System.Models.Author;
 import com.example.Student_Library_Management_System.Models.Book;
 import com.example.Student_Library_Management_System.Repository.AuthorRepository;
@@ -16,19 +17,27 @@ public class BookService {
     AuthorRepository authorRepository;
 
 
-    public String addBook(Book book){
-        // Get the author entity
-        // Get authorId
-        int authorId = book.getAuthor().getId();
+    public String addBook(BookRequestDto bookRequestDto){
+
+        //
+
+        int authorId = bookRequestDto.getAuthorId();
+
         //Fetch the author entity
 
         Author author = authorRepository.findById(authorId).get(); // Author entity
 
-        //exception handling from get();
+        //Converter
+        //We have created this entity so that we can save it into the DB.
 
-        //other attributes are set from postman
+        Book book = new Book();
 
-        //Setting the foreign key attr in the child class
+        //Basic attributes are being from Dto to Entity Layer
+        book.setGenre(bookRequestDto.getGenre());
+        book.setIssued(false);
+        book.setName(bookRequestDto.getName());
+        book.setPages(bookRequestDto.getPages());
+
 
         book.setAuthor(author);
 
@@ -47,6 +56,5 @@ public class BookService {
         //bookRepository.save();  --> not required bcz it will be auto called by cascading
 
         return "Book Added successfully";
-
     }
 }
