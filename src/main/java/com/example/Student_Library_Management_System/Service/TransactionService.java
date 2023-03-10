@@ -33,7 +33,7 @@ public class TransactionService {
         int bookId = issueBookRequestDto.getBookId();
         int cardId = issueBookRequestDto.getCardId();
 
-        // Get the Book and Card entity ---> Why do we need ths---> We want to set the txn attributes
+        // Get the Book and Card entity ---> Why do we need this---> We want to set the txn attributes
 
         Book book = bookRepository.findById(bookId).get();
 

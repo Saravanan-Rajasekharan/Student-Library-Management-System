@@ -1,6 +1,7 @@
 package com.example.Student_Library_Management_System.Service;
 
 import com.example.Student_Library_Management_System.DTOs.BookRequestDto;
+import com.example.Student_Library_Management_System.DTOs.BookResponseDto;
 import com.example.Student_Library_Management_System.Models.Author;
 import com.example.Student_Library_Management_System.Models.Book;
 import com.example.Student_Library_Management_System.Repository.AuthorRepository;
@@ -15,6 +16,9 @@ public class BookService {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    BookRepository bookRepository;
 
 
     public String addBook(BookRequestDto bookRequestDto){
@@ -56,5 +60,17 @@ public class BookService {
         //bookRepository.save();  --> not required bcz it will be auto called by cascading
 
         return "Book Added successfully";
+    }
+
+
+    public BookResponseDto getBook(Integer id) {
+        Book book = bookRepository.findById(id).get();
+
+        BookResponseDto ResponseBook = new BookResponseDto();
+        ResponseBook.setName(book.getName());
+        ResponseBook.setGenre(book.getGenre());
+        ResponseBook.setPages(book.getPages());
+
+        return ResponseBook;
     }
 }

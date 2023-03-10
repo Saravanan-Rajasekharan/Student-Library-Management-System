@@ -15,7 +15,7 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-    @PostMapping("/add")
+    @PostMapping("/addAuthor")
     public String addAuthor(@RequestBody AuthorEntryDto authorEntryDto){
 
         return authorService.createAuthor(authorEntryDto);

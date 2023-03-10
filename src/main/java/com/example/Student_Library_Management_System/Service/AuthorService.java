@@ -43,7 +43,7 @@ public class AuthorService {
         AuthorResponseDto authorResponseDto = new AuthorResponseDto();
         //Set its attributes
 
-        //List of book --->List<BookResponseDto>
+        //List of book ---> List<BookResponseDto>
 
         List<Book> bookList = author.getBooksWritten();
 
